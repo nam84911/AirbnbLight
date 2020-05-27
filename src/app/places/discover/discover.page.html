@@ -1,0 +1,55 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button fill="clear"color="primary"  slot="start">
+      <ion-menu-button menu="first"></ion-menu-button>
+    </ion-button>
+    <ion-title>discover</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-segment value="all" (ionChange)="onChange($event)" #segment>
+    <ion-segment-button value="all">All places</ion-segment-button>
+    <ion-segment-button value="bookable">Bookable</ion-segment-button>
+  </ion-segment>
+  <div class="ion-text-center" *ngIf="isLoading">
+    <ion-spinner ></ion-spinner>
+  </div>
+    <ion-row *ngIf="places.length>0">
+      <ion-col  text-center> 
+          <ion-card size="12" size-sm="8" offset-sm="2" class="ion-text-center">
+            <ion-card-header>
+              <ion-card-title class="ion-text-center">
+                {{places[0].description}}
+              </ion-card-title>
+              <ion-card-subtitle>
+                {{places[0].price | currency}}/night
+              </ion-card-subtitle>
+            </ion-card-header>
+            <ion-img [src]="places[0].photoURL"></ion-img>
+            <ion-card-content text-center>
+              <p>{{places[0].title}}</p>
+            </ion-card-content>
+            <div class="ion-text-end">
+              <ion-button  color="primary" fill="clear" [routerLink]="[places[0].id]">
+                More
+              </ion-button>
+            </div>
+          </ion-card>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12" size-sm="8" offset-sm="2" text-center> 
+       <ion-list>
+         <ion-item *ngFor="let p of places.slice(1)" [routerLink]="[p.id]" detail>
+            <ion-thumbnail slot="start">
+              <ion-img [src]="p.photoURL"></ion-img>
+            </ion-thumbnail>
+            <ion-label class="ion-text-center">
+              <h2>{{p.description}}</h2>
+              <p>{{p.price | currency}}/night</p>
+            </ion-label>
+         </ion-item>
+       </ion-list>
+      </ion-col>
+    </ion-row>
+</ion-content>

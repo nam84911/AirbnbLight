@@ -1,0 +1,33 @@
+<ion-app>
+  <ion-menu side="start" menuId="first" contentId="main">
+    <ion-header>
+      AirBnBLight
+    </ion-header>
+    <ion-content>
+      <ion-list lines="none">
+        <ion-menu-toggle>
+          <ion-item routerLink="/places/tabs/discover">
+            <ion-icon name="search" slot="start"></ion-icon>
+            <ion-label>Find Places </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle>
+          <ion-item routerLink="/bookings">
+            <ion-icon name="checkbox-outline" slot="start"></ion-icon>
+            <ion-label>Your bookings </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+
+        <ion-menu-toggle>
+          <ion-item>
+            <ion-icon name="exit" slot="start"></ion-icon>
+            <ion-label>Log out </ion-label>
+          </ion-item>
+        </ion-menu-toggle>
+        
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main"></ion-router-outlet>
+</ion-app>

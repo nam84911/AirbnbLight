@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button fill="clear"color="primary"  slot="start">
+      <ion-menu-button menu="first"></ion-menu-button>
+    </ion-button>
+    <ion-title>Bookings</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-text-center" *ngIf="isLoading">
+    <ion-spinner></ion-spinner>
+  </div>
+  <ion-grid *ngIf="!isLoading"> 
+    <ion-row>
+      <ion-col size-md="6" offset-md="3">
+        <ion-list>
+          <ion-item-sliding *ngFor ="let booking of bookings" #slider>
+            <ion-item>
+                <ion-thumbnail slot="start">
+                  <ion-img [src]="booking.photoURL"></ion-img>
+                </ion-thumbnail>
+                <ion-title>
+                  <ion-label>
+                        <ion-grid >
+                          <ion-row>
+                            <ion-col class="ion-text-start"size-sm="7">
+                              <h5>{{booking.title}}</h5>
+                            </ion-col>
+                            <ion-col class="ion-text-end" size-sm="5">
+                              <p>Guests: {{booking.guests}}</p>
+                            </ion-col>
+                          </ion-row>
+
+                          <ion-row>
+                            <ion-col class="ion-text-start"size="6">
+                              <ion-icon name="calendar"></ion-icon>
+                              {{booking.from.getFullYear()}}/{{booking.from.getMonth()}}/{{booking.from.getDate()}}
+                            </ion-col>
+                            <ion-col class="ion-text-end" size="6">
+                              <ion-icon name="calendar"></ion-icon>
+                              {{booking.to.getFullYear()}}/{{booking.to.getMonth()}}/{{booking.to.getDate()}}
+                            </ion-col>
+                          </ion-row>
+                        </ion-grid>
+                      
+                  </ion-label>
+                </ion-title>
+            </ion-item>
+            <ion-item-options>
+              <ion-item-option color="danger" (click)="onDelete(booking.id,slider)">
+                <ion-icon name="trash" slot="icon-only"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+
+            <ion-item-options side="start" >
+              <ion-item-option color="danger" (click)="onDelete(booking.id,slider)">
+                <ion-icon name="trash" slot="icon-only"></ion-icon>
+              </ion-item-option>
+            </ion-item-options>
+          </ion-item-sliding>
+        </ion-list>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+</ion-content>

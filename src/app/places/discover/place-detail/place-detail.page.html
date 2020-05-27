@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-button fill="clear" color="secondary" slot="start">
+      <ion-back-button defaultHref="/places" ></ion-back-button>
+    </ion-button>
+    <ion-title>place-detail</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="ion-text-center" *ngIf="isLoading">
+    <ion-spinner ></ion-spinner>
+  </div>
+  <ion-grid *ngIf="!isLoading">
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-img  class="img2" [src]="place.photoURL"></ion-img>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-padding">
+      <ion-col class="ion-text-center" size-sm="6" offset-sm="3">
+        <ion-label class="ion-text-center">{{place.title}}</ion-label>
+        <p>{{place.description}}</p>
+      </ion-col>
+    </ion-row>
+
+    <ion-row class="ion-padding">
+      <ion-col class="ion-text-center" size-sm="6" offset-sm="3">
+        <p>{{place.location.address}}</p>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size-sm="6" offset-sm="3">
+        <ion-img (click)="openControl()" class="img" [src]="place.location.imageURL"></ion-img>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-button *ngIf="!isLoading&&bookeble" class="ion-float-right" (click)="onBook()">
+    Book
+  </ion-button>
+</ion-content>
